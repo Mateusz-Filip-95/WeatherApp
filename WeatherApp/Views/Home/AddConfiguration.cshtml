@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Add your weather configuration";
+}
+
+<form method="post">
+    <table border="1" align="center" class="table table-striped">
+        <thead>
+            <tr>
+                <th style="text-align:center">City</th>
+                <th style="text-align:center">Refresh time</th>
+                <th style="text-align:center">Action</th>
+            </tr>
+        </thead>
+        @foreach (var item in ViewData["Configurations"] as IList<WeatherConfigurationModel>)
+        {
+            <tr>
+                <td>@item.City</td>
+                <td>@item.RefreshTime</td>
+                <td>
+                    <button style="text-align:center" type="submit" asp-action="DeleteConfigurationAsync" asp-route-id="@item.ConfigurationId" onclick='return confirm("Are you sure you want to delete this record?")'>Delete</button>
+                </td>
+            </tr>
+        }
+    </table>
+</form>
+<br />
+
+<form method="post" asp-controller="Home" asp-action="AddNewConfiguration">
+    <div>
+        <label>City</label>
+        <div>
+            <input type="text" name="city" />
+        </div>
+        <label>Refresh time</label>
+        <div>
+            <input type="number" name="refreshTime" />
+        </div>
+        <div>
+            <br />
+            <input type="submit" name="" value="Add new configuration" onclick='return confirm("Are you sure you want to add new configuration?")' />
+        </div>
+    </div>
+</form>

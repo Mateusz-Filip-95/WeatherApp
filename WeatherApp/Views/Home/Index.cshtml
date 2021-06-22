@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Weather Application";
+}
+<head>
+    <link rel="stylesheet" href="~/css/popup.css">
+    <script src="~/js/popup.js"></script>
+</head>
+<body>
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Your weather configuration</p>
+    </div>
+    <table border="1" align="center" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Weather</th>
+                <th>Temperature</th>
+                <th>Feel Temperature</th>
+                <th>Minimum Temperature</th>
+                <th>Maximum Temperature</th>
+                <th>Pressure</th>
+                <th>Humidity</th>
+                <th>Wind speed</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Refresh time</th>
+            </tr>
+        </thead>
+        @foreach (var item in ViewData["Weather"] as List<WeatherModel>)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Weather</td>
+                <td>@item.Temperature</td>
+                <td>@item.TemperatureFeeling</td>
+                <td>@item.MinTemperature</td>
+                <td>@item.MaxTemperature</td>
+                <td>@item.Pressure</td>
+                <td>@item.Humidity</td>
+                <td>@item.WindSpeed</td>
+                <td>@item.City</td>
+                <td>@item.Country</td>
+                <td>@item.RefreshTime</td>
+            </tr>
+        }
+    </table>
+    <div class="popup" id="popup-1">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="togglePopup()">×</div>
+            <h1>This is a popup!</h1>
+            <p>Close this window and it won't open for 10 seconds even if you refresh your page!</p>
+        </div>
+    </div>
+    @if (ViewBag.JavaScriptFunction != null)
+    {
+        <script type="text/javascript">
+            @Html.Raw(ViewBag.JavaScriptFunction)
+        </script>
+    }
+</body>

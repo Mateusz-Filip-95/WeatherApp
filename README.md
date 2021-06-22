@@ -1,1 +1,3 @@
-# WeatherApp
+An application for collecting current weather data from weather API based on city localization. To track another city, a new configuration must be added. Refresh time specifies how long each configuration will be cached on the server (in minutes). To run the application connection string to the MSSQL database and weather API key is required. API key can be generated for free from: 'https://openweathermap.org/api'. Connection string should be provided in 'appsettings.json' file. Framework used: .NET Core 3.1
+
+ 
